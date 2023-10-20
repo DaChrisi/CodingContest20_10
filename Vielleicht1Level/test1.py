@@ -1,18 +1,17 @@
-import os
-#----------------------Input
-letter = '5'
-file_name = 'input.in'
-output_file_path = '.\ergebnis.txt'
+# Erstelle eine Liste aller möglichen Puzzleteile
+moegliche_puzzleteile = []
+seiten = ['K', 'H']
 
-#----------------------Programm
-current_directory = os.path.dirname(os.path.abspath(__file__))
-file_path = os.path.join(current_directory, file_name)
+for seite1 in seiten:
+    for seite2 in seiten:
+        for seite3 in seiten:
+            for seite4 in seiten:
+                puzzleteil = f'{seite1},{seite2},{seite3},{seite4}'
+                moegliche_puzzleteile.append(puzzleteil)
 
-with open(file_path, 'r') as file:
-    content = file.read()
-    count = content.count(letter)
+# Filtere Puzzleteile, bei denen das erste Element nach vorne verschoben gleich bleibt
+ergebnis = [puzzleteil for puzzleteil in moegliche_puzzleteile if puzzleteil == puzzleteil[1:] + puzzleteil[0]]
 
-with open(output_file_path, 'w') as output_file:
-    output_file.write(str(count))
-
-print(f"Der Buchstabe '{letter}' kommt {count} Mal in der Datei vor.")
+# Gib die gefilterte Liste aus
+for puzzleteil in ergebnis:
+    print(f'"{puzzleteil}"')

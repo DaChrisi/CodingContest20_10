@@ -1,5 +1,5 @@
 def main():
-    input_filename = "level1_.in"
+    input_filename = "input.txt"
     output_filename = "output.txt"
 
     try:
